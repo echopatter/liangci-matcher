@@ -75,6 +75,7 @@ header .wordmark .py { color: var(--ink); }
 header nav { display: flex; gap: 14px; align-items: center; }
 header nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
 header nav a:hover, header nav a:focus { color: var(--accent); }
+header nav a[aria-current="page"] { color: var(--accent); }
 
 h2 { font-size: 22px; font-weight: 600; margin: 24px 0 8px; }
 h3 { font-size: 15px; font-weight: 600; margin: 20px 0 6px; }

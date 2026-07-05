@@ -431,6 +431,12 @@ function renderSettings() {
 
 // ---- router ----
 
+const TITLES = {
+  match: 'Match drill', reverse: 'Reverse drill', phrase: 'Phrase builder',
+  context: 'Context clash', custom: 'Custom drill', structural: 'Structural classifiers',
+  progress: 'Progress', settings: 'Settings',
+};
+
 function route() {
   const parts = location.hash.replace(/^#\/?/, '').split('/');
   const name = parts[0] || 'home';
@@ -449,6 +455,16 @@ function route() {
     case 'settings': renderSettings(); break;
     default: renderHome();
   }
+
+  // Reflect the current screen in the browser tab and highlight the nav link.
+  const title = name === 'lesson' && arg ? 'Lesson ' + arg : TITLES[name];
+  document.title = title ? title + ' | 量词 Matcher' : '量词 Matcher';
+  const hash = location.hash || '#/home';
+  document.querySelectorAll('header nav a').forEach(a => {
+    if (a.getAttribute('href') === hash) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
+
   window.scrollTo(0, 0);
 }
 
